@@ -2,7 +2,7 @@
 
 ## PolyFills
 
-## UseState
+### UseState
 
 ```javascript
 function useState(initialValue) {
@@ -16,10 +16,11 @@ function useState(initialValue) {
     return [() => state, setState];
 }
 const [getCount, setCount] = useState(0);
----
+```
 
-## useEffect
+### UseEffect
 
+```javascript
 function useEffectCustom(effect, dependencies) {
     const hasRun = useRef(false); 
     const prevDependencies = useRef();
@@ -36,7 +37,7 @@ function useEffectCustom(effect, dependencies) {
         prevDependencies.current = dependencies;
     }
 }
-
+```
 
 ### useMemo
 

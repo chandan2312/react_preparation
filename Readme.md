@@ -79,7 +79,7 @@ function useCallback(fn, dependencies) {
 }
 ```
 
-###useContext
+### useContext
 
 
 1. Create Context
@@ -178,4 +178,83 @@ function Counter() {
         </div>
     );
 }
+```
+
+
+##Custom Hooks
+
+### useThrottle
+using useCallback
+
+```javascript
+import { useRef, useCallback } from 'react';
+
+function useThrottle(callback, delay) {
+    const lastCallTime = useRef(0); // Track the last time the function was called
+
+    const throttledFn = useCallback((...args) => {
+        const now = Date.now();
+        if (now - lastCallTime.current >= delay) {
+            callback(...args); // Call the function if enough time has passed
+            lastCallTime.current = now; // Update last call time
+        }
+    }, [callback, delay]);
+
+    return throttledFn;
+}
+```
+
+without useCallback
+```javascript
+import { useRef } from 'react';
+
+function useThrottle(callback, delay) {
+    const lastCallTime = useRef(0); // Track the last time the function was called
+    const lastCallback = useRef(callback); // Store the previous callback for comparison
+    const lastDelay = useRef(delay); // Store the previous delay for comparison
+
+    // Manually track dependency changes and update refs
+    if (lastCallback.current !== callback || lastDelay.current !== delay) {
+        lastCallback.current = callback;
+        lastDelay.current = delay;
+    }
+
+    const throttledFn = (...args) => {
+        const now = Date.now();
+        if (now - lastCallTime.current >= lastDelay.current) {
+            lastCallback.current(...args); 
+            lastCallTime.current = now; 
+        }
+    };
+
+    return throttledFn;
+}
+```
+
+### useDebounce
+
+```javascript
+import { useRef } from 'react';
+
+function useDebounce(callback, delay) {
+    const timer = useRef(null); // Store the timer ID
+    const lastCallback = useRef(callback); // Store the previous callback
+    const lastDelay = useRef(delay); // Store the previous delay
+
+    // Update refs if callback or delay changes
+    if (lastCallback.current !== callback || lastDelay.current !== delay) {
+        lastCallback.current = callback;
+        lastDelay.current = delay;
+    }
+
+    const debouncedFn = (...args) => {
+        if (timer.current) clearTimeout(timer.current); // Clear any existing timer
+        timer.current = setTimeout(() => {
+            lastCallback.current(...args); // Call the latest callback after the delay
+        }, lastDelay.current);
+    };
+
+    return debouncedFn;
+}
+
 ```

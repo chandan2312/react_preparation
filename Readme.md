@@ -4,38 +4,31 @@
 
 <details>
 <summary><h3>useState</h3></summary>
-
-</summary>
+</details>
 
 <details>
 <summary><h3>useEffect</h3></summary>
-
-</summary>
+</details>
 
 <details>
 <summary><h3>usRef</h3></summary>
-
-</summary>
+</details>
 
 <details>
 <summary><h3>useContext</h3></summary>
-
-</summary>
+</details>
 
 <details>
 <summary><h3>useMemo</h3></summary>
-
-</summary>
+</details>
 
 <details>
 <summary><h3>useCallback</h3></summary>
-
-</summary>
+</details>
 
 <details>
 <summary><h3>useReducer</h3></summary>
-
-</summary>
+</details>
 
 
 

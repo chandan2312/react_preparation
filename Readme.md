@@ -1,5 +1,44 @@
 # Interview Questions
 
+## Hooks Examples
+
+<details>
+<summary><h3>useState</h3></summary>
+
+</summary>
+
+<details>
+<summary><h3>useEffect</h3></summary>
+
+</summary>
+
+<details>
+<summary><h3>usRef</h3></summary>
+
+</summary>
+
+<details>
+<summary><h3>useContext</h3></summary>
+
+</summary>
+
+<details>
+<summary><h3>useMemo</h3></summary>
+
+</summary>
+
+<details>
+<summary><h3>useCallback</h3></summary>
+
+</summary>
+
+<details>
+<summary><h3>useReducer</h3></summary>
+
+</summary>
+
+
+
 ## PolyFills
 
 <details>
@@ -879,9 +918,15 @@ function useAuthCheck() {
   const [isAuthChecked, setIsAuthChecked] = useState(false);
 
   useEffect(() => {
+
+
     if (user !== null) {
       setIsAuthChecked(true);
     }
+
+    
+
+
   }, [user]);
 
   return isAuthChecked;
@@ -890,3 +935,136 @@ function useAuthCheck() {
 export default useAuthCheck;
 ```
 </details>
+
+# Machine Coding Round Problems
+
+1. ### Multistep Tabular Form with Prev, Next Button
+[Code](https://github.com/WebDevSimplified/react-multistep-form/)
+[Video](https://www.youtube.com/watch?v=uDCBSnWkuH0&ab_channel=WebDevSimplified)
+
+
+2. ### Pagination
+[Code](https://github.com/piyush-eon/frontend-interview-questions/tree/master/reactjs-interview-questions/pagination)
+[Video](https://www.youtube.com/watch?v=cBsB7hhOzQI&ab_channel=RoadsideCoder)
+
+
+3. ### File Explorer
+[Code](https://github.com/piyush-eon/frontend-interview-questions/tree/master/reactjs-interview-questions/file-explorer)
+[Video](https://www.youtube.com/watch?v=20F_KzHPpvI)
+
+4. ### Job Board
+[Code](https://github.com/piyush-eon/frontend-interview-questions/tree/master/reactjs-interview-questions/job-board)
+[Video](https://www.youtube.com/watch?v=KJ-cf62ioQs)
+
+
+5. ### Drag & Drop Notes
+[Code](https://github.com/piyush-eon/frontend-interview-questions/tree/master/reactjs-interview-questions/drag-and-drop-notes)
+[Video](https://www.youtube.com/watch?v=3U3UiBfcNqQ)
+
+
+6. ### Quiz App
+[Code](https://github.com/piyush-eon/frontend-interview-questions/tree/master/reactjs-interview-questions/quiz-app)
+[Video](https://www.youtube.com/watch?v=TF1FKrzsRDM)
+
+
+7. ### Component
+[Code](github)
+[Video](youtube)
+
+8. ### Component
+[Code](github)
+[Video](youtube)
+
+
+9. ### Component
+[Code](github)
+[Video](youtube)
+
+10. ### Component
+[Code](github)
+[Video](youtube)
+
+11. ### Component
+[Code](github)
+[Video](youtube)
+
+12. ### Component
+[Code](github)
+[Video](youtube)
+
+13. ### Component
+[Code](github)
+[Video](youtube)
+
+14. ### Component
+[Code](github)
+[Video](youtube)
+
+15. ### Component
+[Code](github)
+[Video](youtube)
+
+16. ### Component
+[Code](github)
+[Video](youtube)
+
+17. ### Component
+[Code](github)
+[Video](youtube)
+
+18. ### Component
+[Code](github)
+[Video](youtube)
+
+19. ### Component
+[Code](github)
+[Video](youtube)
+
+
+20. ### Component
+[Code](github)
+[Video](youtube)
+
+21. ### Component
+[Code](github)
+[Video](youtube)
+
+
+22. ### Component
+[Code](github)
+[Video](youtube)
+
+23. ### Component
+[Code](github)
+[Video](youtube)
+
+24. ### Component
+[Code](github)
+[Video](youtube)
+
+25. ### Component
+[Code](github)
+[Video](youtube)
+
+26. ### Component
+[Code](github)
+[Video](youtube)
+
+27. ### Component
+[Code](github)
+[Video](youtube)
+
+28. ### Component
+[Code](github)
+[Video](youtube)
+
+29. ### Component
+[Code](github)
+[Video](youtube)
+
+30. ### Component
+[Code](github)
+[Video](youtube)
+
+
+

@@ -960,104 +960,111 @@ export default useAuthCheck;
 [Video](https://www.youtube.com/watch?v=TF1FKrzsRDM)
 
 
-7. ### Component
-[Code](github)
+7. ### Multi Select Search
+[Code](https://github.com/piyush-eon/frontend-interview-questions/tree/master/reactjs-interview-questions/multi-select-input)
+[Video](https://www.youtube.com/watch?v=AsvybgZTryo)
+
+8. ### Grid Lights
+[Code](https://github.com/piyush-eon/frontend-interview-questions/tree/master/reactjs-interview-questions/grid-sequence)  
+[Video](https://www.youtube.com/watch?v=sAF7Km_znjA)
+
+
+9. ### Dark Mode Light Mode
+[Code](https://github.com/piyush-eon/frontend-interview-questions/tree/master/reactjs-interview-questions/dark-light-mode)
+[Video](https://www.youtube.com/watch?v=5XtvVH-v6kM)
+
+10. ### OTP component
+[Code](https://github.com/piyush-eon/frontend-interview-questions/tree/master/reactjs-interview-questions/otp-login)
+[Video](https://www.youtube.com/watch?v=nQ-hy4PUta8)
+
+11. ### Selectable Grids
+[Code](https://github.com/piyush-eon/frontend-interview-questions/tree/master/reactjs-interview-questions/selectable-grid)
+[Video](https://www.youtube.com/watch?v=Vo3zBqXcDjQ)
+
+12. ### Tic Tac Toe
+[Code](https://github.com/piyush-eon/frontend-interview-questions/tree/master/reactjs-interview-questions/tic-tac-toe)
+[Video](https://www.youtube.com/watch?v=-uAhf92DVqA)
+
+13. ### Memory Game
+[Code](https://github.com/piyush-eon/frontend-interview-questions/tree/master/reactjs-interview-questions/memory-game)
+[Video](https://www.youtube.com/watch?v=84o1kuPuYdU)
+
+14. ### Password Generator
+[Code](https://github.com/piyush-eon/frontend-interview-questions/tree/master/reactjs-interview-questions/password-generator)
+[Video](https://www.youtube.com/watch?v=u9-x0sG-WQc)
+
+15. ### EMI calculator
+[Code](https://github.com/piyush-eon/frontend-interview-questions/tree/master/reactjs-interview-questions/emi-calculator)
+[Video](https://www.youtube.com/watch?v=YvgUeUlpwyA&list=PLKhlp2qtUcSZiWKJTi5-5r6IRdHhxP9ZU&index=4&pp=iAQB)
+
+16. ### Progress Bar
+[Code](https://github.com/piyush-eon/frontend-interview-questions/tree/master/reactjs-interview-questions/progress-bar)
+[Video](https://www.youtube.com/watch?v=9Ez_gdsgGiM&ab_channel=RoadsideCoder)
+
+17. ### Star Rating
+[Code](https://github.com/shaikhsufyan/react-js-project/tree/main/start-rating/)
+[Video](https://www.youtube.com/watch?v=yoNm6ha8ty4&ab_channel=CODEwithSufyanShaikh)
+
+18. ### Accordion
+[Code](https://github.com/rohitsingh-23/Intro-to-react/tree/accordion)
+[Video](https://www.youtube.com/watch?v=X11wN7aPGeA&ab_channel=EngineeringMind)
+
+19. ### Employee Management App
+[Code](https://github.com/piyush-eon/frontend-interview-questions/tree/master/machine-coding-interview-questions/employee-database-management)
+[Video](https://www.youtube.com/watch?v=ZrMO0bCGwFg&list=PLKhlp2qtUcSYQojD5G-ElgHezoCyq2Hgo&ab_channel=RoadsideCoder)
+
+
+20. ### Modal Poup
+[Code- codesandbox](https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbGVraGdZRmFINFlIa0xZVjZ0T3BNNm50enJ1Z3xBQ3Jtc0tuMDM2Zm1aUU9rTzZKbWFidDBCYUkyMG1Xc0NhYzh6VEs2d1lLZVJoUFMtaUx0QUZWNDNEeUNFdGN1Q2dsWFY3Z0doeFpOdGY5N0c0Zk5JVTNtMjJJeVpyeWdDOGVzOVRYN0VPYlJzZ2pidXhuMjBIMA&q=https%3A%2F%2Fcodesandbox.io%2Fs%2Fmodal-reactjs-w4scxg&v=8kin62BmHHc)
 [Video](youtube)
 
-8. ### Component
-[Code](github)
-[Video](youtube)
+21. ### Search bar With Auto Suggestions
+[Code](https://github.com/piyush-eon/frontend-interview-questions/tree/master/frontend-system-design-questions/autosuggestion-component)
+[Video](https://www.youtube.com/watch?v=6YrkXWFgiV8&ab_channel=RoadsideCoder)
 
 
-9. ### Component
-[Code](github)
-[Video](youtube)
+22. ### Nested Comments
+[Code](https://github.com/piyush-eon/frontend-interview-questions/tree/master/frontend-system-design-questions/nested-comments)
+[Video](https://www.youtube.com/watch?v=zeY1Vw1dWJk&ab_channel=RoadsideCoder)
 
-10. ### Component
-[Code](github)
-[Video](youtube)
+23. ### Toast Component
+[Code](https://github.com/piyush-eon/frontend-interview-questions/tree/master/frontend-system-design-questions/toast-component)
+[Video](https://www.youtube.com/watch?v=v50uJDEFnqM&ab_channel=RoadsideCoder)
 
-11. ### Component
-[Code](github)
-[Video](youtube)
+24. ### Country, State, City Selector
+[Code](https://github.com/Sridhar-C-25/country_state_city_selector_react)
+[Video](https://www.youtube.com/watch?v=c4yATJ8EKuw&ab_channel=CodeAProgram)
 
-12. ### Component
-[Code](github)
-[Video](youtube)
+25. ### Image Corousel
+[Code](https://github.com/JohanAlves/yt-react-carousel)
+[Video](https://www.youtube.com/watch?v=SAWQ_LmyY2Q&ab_channel=JohanAlves)
 
-13. ### Component
-[Code](github)
-[Video](youtube)
+26. ### Overlapping Circle Problem - Uber (Advanced)
+[Code](https://devtools.tech/questions/s/how-to-detect-overlapping-circles-in-react-js-uber-frontend-interview-question---qid---ixSxPTedmz1CyVZSab1N)
+[Video](https://www.youtube.com/watch?v=bgKMaqk2WKw&ab_channel=DevtoolsTech)
 
-14. ### Component
-[Code](github)
-[Video](youtube)
-
-15. ### Component
-[Code](github)
-[Video](youtube)
-
-16. ### Component
-[Code](github)
-[Video](youtube)
-
-17. ### Component
-[Code](github)
-[Video](youtube)
-
-18. ### Component
-[Code](github)
-[Video](youtube)
-
-19. ### Component
-[Code](github)
-[Video](youtube)
+27. ### Shopping Cart Design
+28. ### Product Page with Pagination, Filters, sorting
 
 
-20. ### Component
-[Code](github)
-[Video](youtube)
+# Frontend System Design Questions
 
-21. ### Component
-[Code](github)
-[Video](youtube)
+### Snake & Ladder
+### Google Calender
+### Whiteboard
+### Google Sheet
+### Poll Widget
+### Asset Performace Of Web Apps
 
+## Advanced 
 
-22. ### Component
-[Code](github)
-[Video](youtube)
-
-23. ### Component
-[Code](github)
-[Video](youtube)
-
-24. ### Component
-[Code](github)
-[Video](youtube)
-
-25. ### Component
-[Code](github)
-[Video](youtube)
-
-26. ### Component
-[Code](github)
-[Video](youtube)
-
-27. ### Component
-[Code](github)
-[Video](youtube)
-
-28. ### Component
-[Code](github)
-[Video](youtube)
-
-29. ### Component
-[Code](github)
-[Video](youtube)
-
-30. ### Component
-[Code](github)
-[Video](youtube)
-
+### CodeSandBox - Chirag Goel Youtube
+### Whatsapp - Chirag Goel Youtube
+### BookMyShow - Chirag Goel Youtube
+### Netflix - Chirag Goel Youtube
+### Notion
+### Pinterest
+### Facebook News
+### Chat App
 
 

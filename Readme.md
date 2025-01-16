@@ -181,7 +181,7 @@ function Counter() {
 ```
 
 
-##Custom Hooks
+## Custom Hooks
 
 ### useThrottle
 using useCallback
@@ -256,5 +256,69 @@ function useDebounce(callback, delay) {
 
     return debouncedFn;
 }
+
+
+//usage
+
+const fetchResults = useDebounce((searchQuery) => {
+        console.log('Fetching results for:', searchQuery);
+        // Simulate an API call
+        setResults([`Result for ${searchQuery}`]);
+    }, 500);
+
+    const handleChange = (e) => {
+        const newQuery = e.target.value;
+        setQuery(newQuery);
+        fetchResults(newQuery); // Call the debounced function
+    };
+```
+### useInfiniteScroll
+
+```javascript
+import { useState, useEffect } from 'react';
+
+function useInfiniteScroll(fetchData, threshold = 100) {
+    const [isLoading, setIsLoading] = useState(false);
+    
+    const handleScroll = () => {
+        if (isLoading) return; // Prevent multiple requests while data is loading
+
+        const bottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - threshold;
+        if (bottom) {
+            setIsLoading(true);
+            fetchData(); // Call the fetchData function to load more content
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [isLoading]);
+
+    return isLoading;
+}
+
+
+//usage
+
+ const [items, setItems] = useState([]);
+    const [page, setPage] = useState(1);
+
+    // Simulate fetching more data (replace with real API)
+    const fetchItems = async () => {
+        console.log('Fetching more items...');
+        const newItems = await new Promise(resolve => {
+            setTimeout(() => {
+                resolve(Array.from({ length: 10 }, (_, index) => `Item ${index + (page - 1) * 10}`));
+            }, 1000);
+        });
+
+        setItems(prevItems => [...prevItems, ...newItems]);
+        setPage(prevPage => prevPage + 1); // Update page for next request
+    };
+
+    const isLoading = useInfiniteScroll(fetchItems, 200); // 200px threshold before the bottom
 
 ```

@@ -41,6 +41,7 @@ function useEffectCustom(effect, dependencies) {
 
 ### useMemo
 
+```javascript
 import { useRef } from "react";
 
 function useMemoCustom(cb, dependencies) {
@@ -57,9 +58,11 @@ function useMemoCustom(cb, dependencies) {
 
     return cache.current.value;
 }
-
+```
 
 ###  useCallback
+
+```javascript
 function useCallback(fn, dependencies) {
     let memoizedFn = fn;
     let prevDependencies = [];
@@ -74,13 +77,15 @@ function useCallback(fn, dependencies) {
 
     return memoizedFn;
 }
-
+```
 
 ###useContext
+
 
 1. Create Context
 We need a context object to hold the global state. This can be an object with a Provider function and a Consumer function.
 
+```javascript
 let currentContext = null;
 
 function createContext(defaultValue) {
@@ -94,19 +99,20 @@ function createContext(defaultValue) {
         },
     };
 }
-
+```
 
 2. Implement useContext
 The useContext hook will access the current context value.
 
-
+```javascript
 function useContext(context) {
     return context;  // Return the context value (this simulates React's useContext)
 }
-
+```
 
 3. Example Usage
 
+```javascript
 // Create a new context
 const MyContext = createContext("Initial Value");
 
@@ -122,6 +128,7 @@ function ChildComponent() {
     const value = useContext(MyContext);  // Access the context value
     return <div>{value}</div>;  // Will render "Hello, World!"
 }
+```
 
 
 ### useReducer
@@ -131,9 +138,8 @@ The useReducer hook will:
 
 Accept a reducer function and an initial state.
 Return the current state and a dispatch function to send actions to the reducer.
-javascript
-Copy
-Edit
+
+```javascript
 function useReducer(reducer, initialState) {
     let state = initialState;
     const dispatch = (action) => {
@@ -141,12 +147,11 @@ function useReducer(reducer, initialState) {
     };
     return [state, dispatch];  // Return the current state and the dispatch function
 }
+```
 2. Example Reducer Function
 The reducer function defines how the state changes in response to actions. It takes the current state and an action and returns the new state.
 
-javascript
-Copy
-Edit
+```javascript
 function counterReducer(state, action) {
     switch (action.type) {
         case 'INCREMENT':
@@ -157,12 +162,11 @@ function counterReducer(state, action) {
             return state;
     }
 }
+```
 3. Using useReducer in a Component
 Now, we can use useReducer in a component to manage state based on the actions.
 
-javascript
-Copy
-Edit
+```javascript
 function Counter() {
     const [state, dispatch] = useReducer(counterReducer, { count: 0 });
 
@@ -174,4 +178,4 @@ function Counter() {
         </div>
     );
 }
-
+```

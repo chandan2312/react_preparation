@@ -16,7 +16,7 @@ function useState(initialValue) {
     return [() => state, setState];
 }
 const [getCount, setCount] = useState(0);
-
+---
 
 ## useEffect
 

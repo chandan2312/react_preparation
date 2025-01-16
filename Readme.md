@@ -445,3 +445,448 @@ export default useLocalStorage;
 
 ```
 </details> 
+
+
+<details>
+<summary><h3>useSession</h3></summary>
+
+```javascript
+import { useCallback } from "react";
+
+function useSession() {
+  const getValue = useCallback((keys) => {
+    try {
+      if (Array.isArray(keys)) {
+        return keys.reduce((result, key) => {
+          const item = sessionStorage.getItem(key);
+          result[key] = item ? JSON.parse(item) : null;
+          return result;
+        }, {});
+      } else {
+        const item = sessionStorage.getItem(keys);
+        return item ? JSON.parse(item) : null;
+      }
+    } catch (error) {
+      console.error(`Error getting sessionStorage value(s):`, error);
+      return null;
+    }
+  }, []);
+
+  const setValue = useCallback((keyValues) => {
+    try {
+      if (Array.isArray(keyValues)) {
+        keyValues.forEach(({ key, value }) => {
+          const valueToStore =
+            value instanceof Function ? value(getValue(key)) : value;
+          sessionStorage.setItem(key, JSON.stringify(valueToStore));
+        });
+      } else {
+        const { key, value } = keyValues;
+        const valueToStore =
+          value instanceof Function ? value(getValue(key)) : value;
+        sessionStorage.setItem(key, JSON.stringify(valueToStore));
+      }
+    } catch (error) {
+      console.error(`Error setting sessionStorage value(s):`, error);
+    }
+  }, [getValue]);
+
+  const deleteValue = useCallback((keys) => {
+    try {
+      if (Array.isArray(keys)) {
+        keys.forEach((key) => sessionStorage.removeItem(key));
+      } else {
+        sessionStorage.removeItem(keys);
+      }
+    } catch (error) {
+      console.error(`Error deleting sessionStorage value(s):`, error);
+    }
+  }, []);
+
+  const clearSession = useCallback(() => {
+    try {
+      sessionStorage.clear();
+    } catch (error) {
+      console.error("Error clearing sessionStorage:", error);
+    }
+  }, []);
+
+  return {
+    getValue,
+    setValue,
+    deleteValue,
+    clearSession,
+  };
+}
+
+export default useSession;
+
+```
+</details>
+
+
+<details>
+<summary><h3>useCookies</h3></summary>
+
+```javascript
+    import { useCallback } from "react";
+
+function useCookies() {
+  const setCookie = useCallback((key, value, options = {}) => {
+    let cookieString = `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
+    if (options.expires) {
+      cookieString += `; expires=${options.expires.toUTCString()}`;
+    }
+    if (options.path) {
+      cookieString += `; path=${options.path}`;
+    }
+    if (options.domain) {
+      cookieString += `; domain=${options.domain}`;
+    }
+    if (options.secure) {
+      cookieString += `; secure`;
+    }
+    if (options.sameSite) {
+      cookieString += `; samesite=${options.sameSite}`;
+    }
+    document.cookie = cookieString;
+  }, []);
+
+  const getCookie = useCallback((key) => {
+    const cookies = document.cookie.split("; ").reduce((acc, cookie) => {
+      const [k, v] = cookie.split("=");
+      acc[decodeURIComponent(k)] = decodeURIComponent(v);
+      return acc;
+    }, {});
+    return cookies[key] || null;
+  }, []);
+
+  const deleteCookie = useCallback((key, options = {}) => {
+    setCookie(key, "", { ...options, expires: new Date(0) });
+  }, [setCookie]);
+
+  return { setCookie, getCookie, deleteCookie };
+}
+
+export default useCookies;
+
+```
+
+</details>
+
+<details>
+<summary><h3>useToggle</h3></summary>
+
+```javascript
+import { useState, useCallback } from "react";
+
+function useToggle(initialValue = false) {
+  const [state, setState] = useState(initialValue);
+
+  const toggle = useCallback((value) => {
+    // If a specific value is provided, set it; otherwise, toggle the current state
+    setState((prevState) => (typeof value === "boolean" ? value : !prevState));
+  }, []);
+
+  return [state, toggle];
+}
+
+export default useToggle;
+```
+
+</details>
+
+
+<details>
+<summary><h3>useDarkMode</h3></summary>
+
+```javascript
+import { useState, useEffect } from "react";
+
+function useDarkMode() {
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    // Check localStorage or system preferences on initial load
+    const storedMode = localStorage.getItem("darkMode");
+    return storedMode ? JSON.parse(storedMode) : window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
+
+  useEffect(() => {
+    // Apply the theme to the body element
+    if (isDarkMode) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+
+    // Save the user's preference in localStorage
+    localStorage.setItem("darkMode", JSON.stringify(isDarkMode));
+  }, [isDarkMode]);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode((prev) => !prev);
+  };
+
+  return [isDarkMode, toggleDarkMode];
+}
+
+export default useDarkMode;
+
+```
+
+</details>
+
+
+<details>
+<summary><h3>useFetch</h3></summary>
+
+```javascript
+function useFetch(url) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        const result = await response.json();
+        setData(result);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [url]);
+
+  return { data, loading, error };
+}
+```
+
+</details>
+
+
+<details>
+<summary><h3>Authentication Hooks</h3></summary>
+
+1. useAuth: Manages authentication state
+This hook handles the user's login, logout, and session persistence.
+
+```javascript
+
+import { useState, useEffect } from 'react';
+
+function useAuth() {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // Check if a user is logged in (using localStorage or cookies)
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+    setLoading(false);
+  }, []);
+
+  const login = (userData) => {
+    setUser(userData);
+    localStorage.setItem('user', JSON.stringify(userData));
+  };
+
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem('user');
+  };
+
+  return { user, loading, login, logout };
+}
+
+export default useAuth;
+```
+
+
+2. useToken: Manages user authentication token
+This hook handles the retrieval and setting of an authentication token (e.g., JWT).
+
+```javascript
+import { useState, useEffect } from 'react';
+
+function useToken() {
+  const [token, setToken] = useState(null);
+
+  // Check if a token exists in localStorage or cookies
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
+
+  const saveToken = (newToken) => {
+    setToken(newToken);
+    localStorage.setItem('token', newToken);
+  };
+
+  const clearToken = () => {
+    setToken(null);
+    localStorage.removeItem('token');
+  };
+
+  return { token, saveToken, clearToken };
+}
+
+export default useToken;
+```
+
+3. useSession: Manages user session state
+This hook can manage session-based data for a user, storing and fetching session data from sessionStorage.
+
+```javascript
+import { useState, useEffect } from 'react';
+
+function useSession() {
+  const [session, setSession] = useState(null);
+
+  // Check if session data exists in sessionStorage
+  useEffect(() => {
+    const storedSession = sessionStorage.getItem('session');
+    if (storedSession) {
+      setSession(JSON.parse(storedSession));
+    }
+  }, []);
+
+  const saveSession = (sessionData) => {
+    setSession(sessionData);
+    sessionStorage.setItem('session', JSON.stringify(sessionData));
+  };
+
+  const clearSession = () => {
+    setSession(null);
+    sessionStorage.removeItem('session');
+  };
+
+  return { session, saveSession, clearSession };
+}
+
+export default useSession;
+```
+
+4. useRequireAuth: Protects routes by redirecting unauthenticated users
+This hook can be used to protect certain routes by redirecting the user if they are not logged in.
+
+```javascript
+import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom'; // or useNavigate for React Router v6
+
+function useRequireAuth() {
+  const history = useHistory();
+  const { user } = useAuth(); // Assuming useAuth hook is implemented as shown above
+
+  useEffect(() => {
+    if (!user) {
+      history.push('/login'); // Redirect to login page
+    }
+  }, [user, history]);
+}
+
+export default useRequireAuth;
+```
+
+
+5. useLogin: Handles login functionality
+This hook handles the user login process, including making API requests and managing the login state.
+
+```javascript
+import { useState } from 'react';
+import useToken from './useToken'; // Assuming useToken hook is implemented as shown above
+
+function useLogin() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const { saveToken } = useToken();
+
+  const login = async (username, password) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        body: JSON.stringify({ username, password }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        saveToken(data.token); // Save the token
+      } else {
+        setError(data.message); // Handle login failure
+      }
+    } catch (err) {
+      setError('Something went wrong');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { login, loading, error };
+}
+
+export default useLogin;
+```
+
+6. useLogout: Handles logout functionality
+This hook is used to handle the logout process and clear authentication data.
+
+```javascript
+import { useState } from 'react';
+import useToken from './useToken'; // Assuming useToken hook is implemented as shown above
+
+function useLogout() {
+  const [loading, setLoading] = useState(false);
+  const { clearToken } = useToken();
+
+  const logout = async () => {
+    setLoading(true);
+    try {
+      // Here you might want to call an API to invalidate the session
+      await fetch('/api/logout', { method: 'POST' });
+      clearToken(); // Clear the stored token
+    } catch (err) {
+      console.error('Error logging out', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { logout, loading };
+}
+
+export default useLogout;
+```
+
+
+7. useAuthCheck: Checks for authentication on initial load
+This hook can be used to check whether the user is authenticated on the initial load of your application.
+
+```javascript
+import { useEffect, useState } from 'react';
+import useAuth from './useAuth'; // Assuming useAuth hook is implemented as shown above
+
+function useAuthCheck() {
+  const { user } = useAuth();
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
+
+  useEffect(() => {
+    if (user !== null) {
+      setIsAuthChecked(true);
+    }
+  }, [user]);
+
+  return isAuthChecked;
+}
+
+export default useAuthCheck;
+```
+</details>

@@ -326,6 +326,12 @@ function useInfiniteScroll(fetchData, threshold = 100) {
 
 ### useLocalStorage
 
+
+
+
+<details>
+<summary><h3>useLocalStorage</h3></summary>
+
 ```javascript
 import { useCallback } from 'react';
 
@@ -409,18 +415,4 @@ function useLocalStorage() {
 export default useLocalStorage;
 
 ```
-
-
-<details>
-  <summary>Click to expand</summary>
-  
-  This is the content inside the dropdown. You can include **Markdown** formatting here as well.
-
-  - Item 1
-  - Item 2
-  - Item 3
-
-  ```javascript
-  console.log("You can even add code blocks!");
-  ```
 </details> 

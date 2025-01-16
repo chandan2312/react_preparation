@@ -287,6 +287,7 @@ function useInfiniteScroll(fetchData, threshold = 100) {
         if (bottom) {
             setIsLoading(true);
             fetchData(); // Call the fetchData function to load more content
+            setIsLoading(false)
         }
     };
 
@@ -322,3 +323,104 @@ function useInfiniteScroll(fetchData, threshold = 100) {
     const isLoading = useInfiniteScroll(fetchItems, 200); // 200px threshold before the bottom
 
 ```
+
+### useLocalStorage
+
+```javascript
+import { useCallback } from 'react';
+
+function useLocalStorage() {
+    const getValue = useCallback((keys) => {
+        try {
+            if (Array.isArray(keys)) {
+                return keys.reduce((result, key) => {
+                    const item = localStorage.getItem(key);
+                    result[key] = item ? JSON.parse(item) : null;
+                    return result;
+                }, {});
+            } else {
+                const item = localStorage.getItem(keys);
+                return item ? JSON.parse(item) : null;
+            }
+        } catch (error) {
+            console.error(`Error getting value(s) from localStorage key(s):`, error);
+            return null;
+        }
+    }, []);
+
+    const setValue = useCallback((keyValues) => {
+        try {
+            if (Array.isArray(keyValues)) {
+                keyValues.forEach(({ key, value }) => {
+                    const valueToStore =
+                        value instanceof Function ? value(getValue(key)) : value;
+                    localStorage.setItem(key, JSON.stringify(valueToStore));
+                });
+            } else {
+                const { key, value } = keyValues;
+                const valueToStore =
+                    value instanceof Function ? value(getValue(key)) : value;
+                localStorage.setItem(key, JSON.stringify(valueToStore));
+            }
+        } catch (error) {
+            console.error(`Error setting value(s) in localStorage:`, error);
+        }
+    }, [getValue]);
+
+    const deleteValue = useCallback((keys) => {
+        try {
+            if (Array.isArray(keys)) {
+                keys.forEach((key) => localStorage.removeItem(key));
+            } else {
+                localStorage.removeItem(keys);
+            }
+        } catch (error) {
+            console.error(`Error deleting value(s) from localStorage:`, error);
+        }
+    }, []);
+
+    const modifyValue = useCallback((keyModifications) => {
+        try {
+            if (Array.isArray(keyModifications)) {
+                keyModifications.forEach(({ key, modifyFn }) => {
+                    const currentValue = getValue(key);
+                    const modifiedValue = modifyFn(currentValue);
+                    setValue({ key, value: modifiedValue });
+                });
+            } else {
+                const { key, modifyFn } = keyModifications;
+                const currentValue = getValue(key);
+                const modifiedValue = modifyFn(currentValue);
+                setValue({ key, value: modifiedValue });
+            }
+        } catch (error) {
+            console.error(`Error modifying value(s) in localStorage:`, error);
+        }
+    }, [getValue, setValue]);
+
+    return {
+        getValue,
+        setValue,
+        deleteValue,
+        modifyValue,
+    };
+}
+
+export default useLocalStorage;
+
+```
+
+
+<details>
+  <summary>Click to expand</summary>
+  
+  This is the content inside the dropdown. You can include **Markdown** formatting here as well.
+
+  - Item 1
+  - Item 2
+  - Item 3
+
+  ```javascript
+  console.log("You can even add code blocks!");
+  ```
+</details> 

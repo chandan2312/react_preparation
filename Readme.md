@@ -2,7 +2,8 @@
 
 ## PolyFills
 
-### UseState
+<details>
+<summary><h3>useState</h3></summary>
 
 ```javascript
 function useState(initialValue) {
@@ -17,8 +18,10 @@ function useState(initialValue) {
 }
 const [getCount, setCount] = useState(0);
 ```
+</details>
 
-### UseEffect
+<details>
+<summary><h3>useEffect</h3></summary>
 
 ```javascript
 function useEffectCustom(effect, dependencies) {
@@ -38,8 +41,10 @@ function useEffectCustom(effect, dependencies) {
     }
 }
 ```
+</details>
 
-### useMemo
+<details>
+<summary><h3>useMemo</h3></summary>
 
 ```javascript
 import { useRef } from "react";
@@ -60,7 +65,12 @@ function useMemoCustom(cb, dependencies) {
 }
 ```
 
-###  useCallback
+</details>
+
+
+
+<details>
+<summary><h3>useCallback</h3></summary>
 
 ```javascript
 function useCallback(fn, dependencies) {
@@ -78,8 +88,10 @@ function useCallback(fn, dependencies) {
     return memoizedFn;
 }
 ```
+</details>
 
-### useContext
+<details>
+<summary><h3>useContext</h3></summary>
 
 
 1. Create Context
@@ -130,8 +142,11 @@ function ChildComponent() {
 }
 ```
 
+</details>
 
-### useReducer
+
+<details>
+<summary><h3>UseReducer</h3></summary>
 
 1. Define the useReducer Hook
 The useReducer hook will:
@@ -179,11 +194,13 @@ function Counter() {
     );
 }
 ```
+</details>
 
 
 ## Custom Hooks
 
-### useThrottle
+<details>
+<summary><h3>useThrottle</h3></summary>
 using useCallback
 
 ```javascript
@@ -231,7 +248,10 @@ function useThrottle(callback, delay) {
 }
 ```
 
-### useDebounce
+</details>
+
+<details>
+<summary><h3>useDebounce</h3></summary>
 
 ```javascript
 import { useRef } from 'react';
@@ -272,7 +292,11 @@ const fetchResults = useDebounce((searchQuery) => {
         fetchResults(newQuery); // Call the debounced function
     };
 ```
-### useInfiniteScroll
+
+</details>
+<details>
+<summary><h3>useInfiniteScroll</h3></summary>
+
 
 ```javascript
 import { useState, useEffect } from 'react';
@@ -324,13 +348,18 @@ function useInfiniteScroll(fetchData, threshold = 100) {
 
 ```
 
-### useLocalStorage
+
+</details>
+
+
+
 
 
 
 
 <details>
 <summary><h3>useLocalStorage</h3></summary>
+
 
 ```javascript
 import { useCallback } from 'react';
